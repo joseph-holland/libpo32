@@ -48,7 +48,7 @@ and ignores non-PO-32 metadata fields such as `Name`, `Path`, `NStereo`,
 | --- | --- | --- |
 | `ModMode` | Oscillator pitch modulation source | Decay = pitch sweep, Sine = vibrato / FM wobble, Noise = random pitch jitter |
 | `ModRate` | Modulation speed or frequency | Decay: `(1.03-x)/(3*x)` seconds, infinite at zero<br/>Sine: `2000*x*pow(10,3.5*(x-1))` Hz<br/>Noise: `20000*x*pow(10,4*(x-1))` Hz |
-| `ModAmt` | Pitch modulation depth | `b = 2*x-1; semitones = b*abs(b)*limit`<br/>Limit96 in decay mode,48 in sine/noise modes |
+| `ModAmt` | Pitch modulation depth | `b = 2*x-1; semitones = b*abs(b)*limit`<br/>Limit 96 in decay mode, 48 in sine/noise modes |
 
 ### Noise (7-12)
 
@@ -199,7 +199,7 @@ The `po32_patch_parse_mtdrum_text()` function in the C API handles parsing.
 ## Mapping validation and remaining synthesis limits
 
 The corrected attack and pitch-modulation maps were checked against the
-Microtonic3.3.4 Audio Unit parameter-value interface at16 normalised values
+Microtonic 3.3.4 Audio Unit parameter-value interface at 16 normalised values
 per control and mode. Examples above are independently observed physical
 reference points, not just importer/renderer round trips. The documented ranges
 and zero-rate behaviour are also described in the
@@ -215,10 +215,10 @@ the device's trigger-to-trigger random state.
 Correct control maps do not establish complete sound equivalence. Oscillator
 antialiasing, waveform gain/phase, the modulated noise
 envelope and stochastic filtering still require independent audio comparisons.
-The normalised packet encoding and21-field public struct layout are unchanged.
+The normalised packet encoding and 21-field public struct layout are unchanged.
 
 EQ compensation was checked with eight controlled offline renders at low level:
-positive boosts of5/10/20/40dB attenuated a far-off-centre tone by half the boost;
-a tone at the EQ centre gained approximately half the boost. A negative20dB
+positive boosts of 5/10/20/40 dB attenuated a far-off-centre tone by half the boost;
+a tone at the EQ centre gained approximately half the boost. A negative 20 dB
 cut did not apply the positive-boost compensation. This is separate from the
 unchanged output Level control.
